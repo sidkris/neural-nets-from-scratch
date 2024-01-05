@@ -22,7 +22,7 @@ for i in range(epochs):
 
     print(f"WEIGHT : {slope} | COST : {cost}")
 
-    slope += learning_rate * cost 
+    slope += learning_rate * cost               # essentially batch gradient descent
 
 # test the neural network
 test_inputs = [5, 6]
@@ -34,4 +34,4 @@ for i, t, p in zip(test_inputs, test_targets, test_preds):
 
     print(f"INPUT : {i} | TARGET : {t} | PREDICTION : {p}")
 
-    
+
