@@ -3,26 +3,32 @@ targets = [2, 4, 6, 8]
 
 # arbitrary initial values
 weight = 0.1 
+bias = 0.3
 learning_rate = 0.1
 epochs = 100
 
 def predict(input):
 
-    return weight * input
+    return weight * input + bias
 
 
 # train the neural network
 for i in range(epochs):
 
     preds = [predict(i) for i in input]
-
-    errors = [t - p for t, p in zip(targets, preds)]
-
+    errors = [(p - t) ** 2 for p, t in zip(preds, targets)] 
     cost = sum(errors) / len(targets)
 
-    print(f"WEIGHT : {weight} | COST : {cost}")
+    # --- Mean Squared Error --- 
+    error_derivative = [2 * (p - t) for p, t in zip(preds, targets)]
+    weight_delta = [e * i for e, i in zip(error_derivative, input)]
+    bias_delta = [e * 1 for e in error_derivative]
 
-    weight += learning_rate * cost               # essentially batch gradient descent
+    weight -= learning_rate * sum(weight_delta) / len(weight_delta)
+    bias -= learning_rate * sum(bias_delta) / len(bias_delta)
+
+    print(f"WEIGHT : {weight} | BIAS : {bias}| COST : {cost}")
+
 
 # test the neural network
 test_inputs = [5, 6]
