@@ -2,13 +2,13 @@ input = [1, 2, 3, 4]
 targets = [2, 4, 6, 8]
 
 # arbitrary initial values
-slope = 0.1 
+weight = 0.1 
 learning_rate = 0.1
 epochs = 100
 
 def predict(input):
 
-    return slope * input
+    return weight * input
 
 
 # train the neural network
@@ -20,9 +20,9 @@ for i in range(epochs):
 
     cost = sum(errors) / len(targets)
 
-    print(f"WEIGHT : {slope} | COST : {cost}")
+    print(f"WEIGHT : {weight} | COST : {cost}")
 
-    slope += learning_rate * cost               # essentially batch gradient descent
+    weight += learning_rate * cost               # essentially batch gradient descent
 
 # test the neural network
 test_inputs = [5, 6]
