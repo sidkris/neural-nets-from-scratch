@@ -11,7 +11,6 @@ def predict(input):
 
     return weight * input + bias
 
-
 # train the neural network
 for i in range(epochs):
 
